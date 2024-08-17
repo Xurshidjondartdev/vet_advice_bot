@@ -19,7 +19,7 @@ Future<void> setup() async {
     create table if not exists users(
         id bigint unique not null,
         fullName varchar,
-        state varchar(30),
+        state varchar,
         balance integer default 0 not null,
         createdAt timestamp default current_timestamp not null,
         lastPaymentDate timestamp
