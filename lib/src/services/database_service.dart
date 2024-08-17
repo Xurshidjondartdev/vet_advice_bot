@@ -24,8 +24,8 @@ abstract class DatabaseService {
       connection = await connectionOpen();
       return await queryFunction(connection);
     } catch (e) {
-      IO.red("too many clients already");
-      return Future.error("too many clients already");
+      IO.red(e);
+      return Future.error(e);
     } finally {
       if (connection != null && connection.isOpen) {
         await connection.close();

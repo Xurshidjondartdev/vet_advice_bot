@@ -33,7 +33,7 @@ Future<void> bot() async {
     MessageHandler(bot).init();
     QueryHandler(bot).init();
   }, (error, stack) {
-      print("Xatolik yuz berdi: $error");
+      print("runZonedGuarded, Xatolik yuz berdi: $error");
     },
   );
 }
