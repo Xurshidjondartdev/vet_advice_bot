@@ -68,7 +68,7 @@ mixin CommonHandler on Buttons, DatabaseService {
     try {
       await bot.sendMessage(
         chatId,
-        "❗️ Hozirgi paytda ko'plab foydalanuvchilar botdan foydalanmoqda, iltimos, birozdan keyin qayta urinib ko'ring...",
+        "❗️ Iltimos, birozdan keyin qayta urinib ko'ring...",
       );
     } catch(e) {
       IO.red("ChatId: $chatId, $e");
