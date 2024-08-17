@@ -103,7 +103,7 @@ abstract class DatabaseService {
       parameters: {"id": id}
     );
 
-    return "<b>Id:</b> $id\n<b>Firstname:</b> ${result.first[0]}\n"
+    return "<b>Id:</b> #id_$id\n<b>Firstname:</b> ${result.first[0]}\n"
         "<b>Umumiy balance:</b> ${result.first[1]}\n"
         "<b>Registratsiya vaqti:</b> ${result.first[2]}\n\n";
   });
