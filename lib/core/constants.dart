@@ -1,5 +1,7 @@
+import 'dart:io';
+
 sealed class Constants {
-  static const String botToken = "7429063114:AAEmIo9orDdnA8Vt3ZXYVuB72-MBUb_cY0M";
+  static String get botToken => Platform.environment['BOT_TOKEN'] ?? "7429063114:AAEmIo9orDdnA8Vt3ZXYVuB72-MBUb_cY0M";
   static const String cardNumber = "5614 6812 1614 1503";
   static const String cardNumberHolder = "Kamoljon Hamzayev";
   static const int subscriptionPrice = 20000;
@@ -8,9 +10,8 @@ sealed class Constants {
   static const int adminId = 1480826067;
 
   /// database
-  static const String host = "localhost";
-  static const String database = "vet_advice_bot";
-  // static const String username = "postgres";
-  static const String username = "postgres";
-  static const String password = "12345";
+  static String get host => Platform.environment['DB_HOST'] ?? "localhost";
+  static String get database => Platform.environment['DB_NAME'] ?? "vet_advice_bot";
+  static String get username => Platform.environment['DB_USER'] ?? "userjon";
+  static String get password => Platform.environment['DB_PASSWORD'] ?? "root";
 }

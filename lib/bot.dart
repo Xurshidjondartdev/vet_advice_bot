@@ -25,7 +25,7 @@ Future<void> bot() async {
     () async {
       final String botName = (await Telegram(Constants.botToken).getMe()).username!;
       final TeleDart bot = TeleDart(Constants.botToken, Event(botName));
-      // await setup();
+      await setup();
       bot.start();
       await setCommands(bot);
       print("The bot has started");

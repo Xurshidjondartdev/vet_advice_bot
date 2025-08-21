@@ -1,3 +1,24 @@
 # https://dart.dev/guides/libraries/private-files
 # Created by `dart pub`
 .dart_tool/
+
+# Environment variables
+.env
+
+# Docker
+docker-compose.override.yml
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Build artifacts
+build/
+bin/server
+
+# OS
+.DS_Store
+Thumbs.db

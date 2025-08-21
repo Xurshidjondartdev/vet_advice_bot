@@ -1,0 +1,74 @@
+services:
+  # PostgreSQL ma'lumotlar bazasi
+  postgres:
+    image: postgres:16-alpine
+    container_name: vet_advice_bot_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: vet_advice_bot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: --encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - vet_advice_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U userjon -d vet_advice_bot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Vet Advice Bot
+  vet_advice_bot:
+    build: .
+    container_name: vet_advice_bot_app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # Database sozlamalari
+      DB_HOST: postgres
+      DB_NAME: vet_advice_bot
+      DB_USER: postgres
+      DB_PASSWORD: root
+      # Telegram bot token (environment variable orqali o'rnatiladi)
+      BOT_TOKEN: ${BOT_TOKEN:-7429063114:AAEmIo9orDdnA8Vt3ZXYVuB72-MBUb_cY0M}
+    networks:
+      - vet_advice_network
+    # Agar web interface kerak bo'lsa
+    # ports:
+    #   - "8080:8080"
+
+  # pgAdmin (ixtiyoriy - ma'lumotlar bazasini boshqarish uchun)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: vet_advice_bot_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@vetbot.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8081:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - vet_advice_network
+    depends_on:
+      - postgres
+    profiles:
+      - admin
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  vet_advice_network:
+    driver: bridge
