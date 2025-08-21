@@ -21,18 +21,20 @@ Future<void> bot() async {
   // MessageHandler(bot).init();
   // QueryHandler(bot).init();
 
-  runZonedGuarded(() async {
-    final String botName = (await Telegram(Constants.botToken).getMe()).username!;
-    final TeleDart bot = TeleDart(Constants.botToken, Event(botName));
-    await setup();
-    bot.start();
-    await setCommands(bot);
-    print("The bot has started");
+  runZonedGuarded(
+    () async {
+      final String botName = (await Telegram(Constants.botToken).getMe()).username!;
+      final TeleDart bot = TeleDart(Constants.botToken, Event(botName));
+      // await setup();
+      bot.start();
+      await setCommands(bot);
+      print("The bot has started");
 
-    CommandHandler(bot).init();
-    MessageHandler(bot).init();
-    QueryHandler(bot).init();
-  }, (error, stack) {
+      CommandHandler(bot).init();
+      MessageHandler(bot).init();
+      QueryHandler(bot).init();
+    },
+    (error, stack) {
       print("runZonedGuarded, Xatolik yuz berdi: $error");
     },
   );

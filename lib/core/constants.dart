@@ -11,6 +11,6 @@ sealed class Constants {
   static const String host = "localhost";
   static const String database = "vet_advice_bot";
   // static const String username = "postgres";
-  static const String username = "userjon";
-  static const String password = "root";
+  static const String username = "postgres";
+  static const String password = "12345";
 }
