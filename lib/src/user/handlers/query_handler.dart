@@ -9,6 +9,7 @@ import '../../buttons/buttons.dart';
 import 'common_handler.dart';
 
 class QueryHandler extends DatabaseService with Buttons, CommonHandler {
+  /// Telegram bot instance
   final TeleDart bot;
   QueryHandler(this.bot);
 
