@@ -2,7 +2,7 @@ import 'dart:io';
 
 sealed class Constants {
   static String get botToken => Platform.environment['BOT_TOKEN'] ?? "7429063114:AAEmIo9orDdnA8Vt3ZXYVuB72-MBUb_cY0M";
-  static const String cardNumber = "5614 6812 1614 1503";
+  static const String cardNumber = "5614 6812 1646 1503";
   static const String cardNumberHolder = "Kamoljon Hamzayev";
   static const int subscriptionPrice = 20000;
   static const int subscriptionPeriod = 72;
